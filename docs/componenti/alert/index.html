@@ -11,13 +11,13 @@
 
 <title>Alert · Bootstrap Italia</title>
 <!-- Bootstrap core CSS -->
-<link href="/bootstrap-italia/dist/css/bootstrap-italia.min.css?202503042355" rel="stylesheet" />
+<link href="/bootstrap-italia/dist/css/bootstrap-italia.min.css?202509041744" rel="stylesheet" />
 
 <!-- Documentation extras -->
  
 <link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet" />
 
-<link href="/bootstrap-italia/docs/assets/dist/css/docs.min.css?202503042355" rel="stylesheet" />
+<link href="/bootstrap-italia/docs/assets/dist/css/docs.min.css?202509041744" rel="stylesheet" />
 
 <!-- Favicons -->
 <link rel="icon" href="/bootstrap-italia/favicon.ico" />
@@ -144,9 +144,9 @@
     <ul class="navbar-nav flex-row ms-md-auto d-none d-md-flex">
       <li class="nav-item pe-2">
         <a title="Scarica Bootstrap Italia" data-toggle="tooltip" class="nav-link d-flex align-items-center"
-          href="https://github.com/italia/bootstrap-italia/releases/download/v2.13.4/bootstrap-italia.zip"
+          href="https://github.com/italia/bootstrap-italia/releases/download/v2.16.0/bootstrap-italia.zip"
           aria-label="Download">
-          <small class="pe-2 m-0">v2.13.4</small>
+          <small class="pe-2 m-0">v2.16.0</small>
           <svg class="icon icon-sm icon-light">
             <use href="/bootstrap-italia/dist/svg/sprites.svg#it-download"
               xlink:href="/bootstrap-italia/dist/svg/sprites.svg#it-download"></use>
@@ -224,7 +224,7 @@
             
           </li><li>
             
-            <a class="list-item active" href="/bootstrap-italia/docs/breaking-feature/"><span>Breaking feature</span></a>
+            <a class="list-item active" href="/bootstrap-italia/docs/breaking-change/"><span>Breaking change</span></a>
             
           </li><li>
             
@@ -824,32 +824,35 @@ Ad esempio “chiudi nota”, “chiudi”, “nascondi”, ecc.</p>
 
 <h4 id="metodi">Metodi</h4>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Metodo</th>
-      <th>Descrizione</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>close</td>
-      <td>Chiude un alert rimuovendolo dal DOM. Se le classi .fade e .show sono presenti nell’elemento, l’avviso verrà chiuso con effetto scomparsa.</td>
-    </tr>
-    <tr>
-      <td>dispose</td>
-      <td>L’alert viene rimosso.</td>
-    </tr>
-    <tr>
-      <td>getInstance</td>
-      <td>Static method which allows you to get the alert instance associated to a DOM element, you can use it like this: bootstrap.Alert.getInstance(alert)</td>
-    </tr>
-    <tr>
-      <td>getOrCreateInstance</td>
-      <td>Static method which returns an alert instance associated to a DOM element or create a new one in case it wasn’t initialised. You can use it like this: bootstrap.Alert.getOrCreateInstance(element)</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Metodo</th>
+        <th>Descrizione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+  <td>getInstance</td>
+  <td>Metodo statico che consente di ottenere l'istanza di avviso associata a un elemento DOM, è possibile utilizzarlo in questo modo: Alert.getInstance(domElement).</td>
+</tr>
+<tr>
+  <td>getOrCreateInstance</td>
+  <td>Metodo statico che restituisce un'istanza di avviso associata a un elemento DOM o ne crea una nuova nel caso in cui non fosse stata inizializzata. Puoi utilizzarla in questo modo: Alert.getOrCreateInstance(element).</td>
+</tr>
+<tr>
+  <td>dispose</td>
+  <td>Rimuove la funzionalità Alert.</td>
+</tr>
+
+      <tr>
+        <td>close</td>
+        <td>Chiude un alert rimuovendolo dal DOM. Se le classi .fade e .show sono presenti nell’elemento, l’avviso verrà chiuso con effetto scomparsa.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -861,7 +864,7 @@ Ad esempio “chiudi nota”, “chiudi”, “nascondi”, ecc.</p>
 </pre></td><td class="rouge-code"><pre><span class="k">import</span> <span class="p">{</span> <span class="nx">Alert</span> <span class="p">}</span> <span class="k">from</span> <span class="dl">'</span><span class="s1">bootstrap-italia</span><span class="dl">'</span><span class="p">;</span>
 
 <span class="kd">const</span> <span class="nx">alertNode</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="dl">'</span><span class="s1">#myAlert</span><span class="dl">'</span><span class="p">)</span>
-<span class="kd">const</span> <span class="nx">alert</span> <span class="o">=</span> <span class="nx">Alert</span><span class="p">.</span><span class="nx">getOrCreateInstance</span><span class="p">(</span><span class="nx">alertNode</span><span class="p">)</span>
+<span class="kd">const</span> <span class="nx">alert</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Alert</span><span class="p">(</span><span class="nx">alertNode</span><span class="p">)</span>
 <span class="nx">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
   <span class="nx">alert</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
 <span class="p">},</span> <span class="mi">15000</span><span class="p">);</span>
@@ -871,24 +874,26 @@ Ad esempio “chiudi nota”, “chiudi”, “nascondi”, ecc.</p>
 
 <p>Il plugin alert di Bootstrap mette a disposizione alcuni eventi per agganciare la funzionalità di avviso.</p>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th>Evento</th>
-      <th>Descrizione</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>close.bs.alert</td>
-      <td>Questo evento si attiva immediatamente quando viene chiamato il metodo di istanza close.</td>
-    </tr>
-    <tr>
-      <td>closed.bs.alert</td>
-      <td>Questo evento viene attivato quando l’avviso è stato chiuso (attenderà il completamento delle transizioni CSS).</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Evento</th>
+        <th>Descrizione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>close.bs.alert</td>
+        <td>Questo evento si attiva immediatamente quando viene chiamato il metodo di istanza close.</td>
+      </tr>
+      <tr>
+        <td>closed.bs.alert</td>
+        <td>Questo evento viene attivato quando l’avviso è stato chiuso (attenderà il completamento delle transizioni CSS).</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -897,9 +902,9 @@ Ad esempio “chiudi nota”, “chiudi”, “nascondi”, ecc.</p>
 5
 6
 </pre></td><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">myAlert</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">myAlert</span><span class="dl">'</span><span class="p">)</span>
-<span class="nx">myAlert</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">closed.bs.alert</span><span class="dl">'</span><span class="p">,</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
-  <span class="c1">// do something, for instance, explicitly move focus to the most appropriate element,</span>
-  <span class="c1">// so it doesn't get lost/reset to the start of the page</span>
+<span class="nx">myAlert</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="dl">'</span><span class="s1">closed.bs.alert</span><span class="dl">'</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="c1">// fai qualcosa, ad esempio, sposta esplicitamente il focus sull'elemento più appropriato,</span>
+  <span class="c1">// in modo che non venga perso/resettato all'inizio della pagina</span>
   <span class="c1">// document.getElementById('...').focus()</span>
 <span class="p">})</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
@@ -909,15 +914,15 @@ Ad esempio “chiudi nota”, “chiudi”, “nascondi”, ecc.</p>
     </div>
 
     
-<script src="/bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js?202503042355"></script>
+<script src="/bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js?202509041744"></script>
 <script>
   bootstrap.loadFonts('/bootstrap-italia/dist/fonts')
-</script><script src="/bootstrap-italia/docs/assets/dist/js/docs.min.js?202503042355"></script>
+</script><script src="/bootstrap-italia/docs/assets/dist/js/docs.min.js?202509041744"></script>
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/anchor.min.js"></script>
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/clipboard.min.js"></script>
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/tsparticles.min.js"></script>
 
-<script src="/bootstrap-italia/docs/assets/src/js/docs.js?202503042355"></script>
+<script src="/bootstrap-italia/docs/assets/src/js/docs.js?202509041744"></script>
 
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/tweenjs.min.js"></script>
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/easeljs.min.js"></script>
@@ -934,7 +939,7 @@ Ad esempio “chiudi nota”, “chiudi”, “nascondi”, ecc.</p>
     { src: '/bootstrap-italia/docs/assets/img/cover/cover-animation-7.png', id: 'cover-7' },
   ]
 </script>
-<script src="/bootstrap-italia/docs/assets/src/js/cover-animation.js?202503042355"></script>
+<script src="/bootstrap-italia/docs/assets/src/js/cover-animation.js?202509041744"></script>
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
 
 <script>

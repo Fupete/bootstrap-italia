@@ -11,13 +11,13 @@
 
 <title>Notifiche · Bootstrap Italia</title>
 <!-- Bootstrap core CSS -->
-<link href="/bootstrap-italia/dist/css/bootstrap-italia.min.css?202503042355" rel="stylesheet" />
+<link href="/bootstrap-italia/dist/css/bootstrap-italia.min.css?202509041744" rel="stylesheet" />
 
 <!-- Documentation extras -->
  
 <link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet" />
 
-<link href="/bootstrap-italia/docs/assets/dist/css/docs.min.css?202503042355" rel="stylesheet" />
+<link href="/bootstrap-italia/docs/assets/dist/css/docs.min.css?202509041744" rel="stylesheet" />
 
 <!-- Favicons -->
 <link rel="icon" href="/bootstrap-italia/favicon.ico" />
@@ -144,9 +144,9 @@
     <ul class="navbar-nav flex-row ms-md-auto d-none d-md-flex">
       <li class="nav-item pe-2">
         <a title="Scarica Bootstrap Italia" data-toggle="tooltip" class="nav-link d-flex align-items-center"
-          href="https://github.com/italia/bootstrap-italia/releases/download/v2.13.4/bootstrap-italia.zip"
+          href="https://github.com/italia/bootstrap-italia/releases/download/v2.16.0/bootstrap-italia.zip"
           aria-label="Download">
-          <small class="pe-2 m-0">v2.13.4</small>
+          <small class="pe-2 m-0">v2.16.0</small>
           <svg class="icon icon-sm icon-light">
             <use href="/bootstrap-italia/dist/svg/sprites.svg#it-download"
               xlink:href="/bootstrap-italia/dist/svg/sprites.svg#it-download"></use>
@@ -224,7 +224,7 @@
             
           </li><li>
             
-            <a class="list-item active" href="/bootstrap-italia/docs/breaking-feature/"><span>Breaking feature</span></a>
+            <a class="list-item active" href="/bootstrap-italia/docs/breaking-change/"><span>Breaking change</span></a>
             
           </li><li>
             
@@ -625,14 +625,7 @@
 <li class="toc-entry toc-h3"><a href="#posizione-fissa">Posizione fissa</a></li>
 </ul>
 </li>
-<li class="toc-entry toc-h2"><a href="#attivazione-tramite-codice">Attivazione tramite codice</a>
-<ul>
-<li class="toc-entry toc-h3"><a href="#tramite-data-attributes">Tramite data attributes</a></li>
-<li class="toc-entry toc-h3"><a href="#tramite-javascript">Tramite JavaScript</a></li>
-<li class="toc-entry toc-h3"><a href="#opzioni">Opzioni</a></li>
-<li class="toc-entry toc-h3"><a href="#metodi">Metodi</a></li>
-</ul>
-</li>
+<li class="toc-entry toc-h2"><a href="#attivazione-tramite-codice">Attivazione tramite codice</a></li>
 </ul>
   </div>
 </div>
@@ -1179,9 +1172,20 @@ Utilizzare il tag <code class="language-plaintext highlighter-rouge">h</code> co
 
 <h2 id="attivazione-tramite-codice">Attivazione tramite codice</h2>
 
+<div class="bd-callout bd-callout-warning">
+<p>Nel caso in cui si desidera che il componente sia inizializzato in maniera automatica 
+utilizzare l’attributo <code class="language-plaintext highlighter-rouge">data-bs-toggle</code> specifico per la sua inizializzazione.</p>
+
+<p>Nel caso in cui si desidera importare e inizializzare autonomamente il componente
+l’attributo <code class="language-plaintext highlighter-rouge">data-bs-toggle</code> specifico <em>non</em> deve essere incluso così da evitare 
+inizializzazioni automatiche che possono portare a comportamenti inaspettati.</p>
+
+<p>Per maggiori informazioni consulta la <a href="/bootstrap-italia/docs/come-iniziare/introduzione/#javascript">sezione JavaScript di Bootstrap Italia</a>.</p>
+</div>
+
 <p>Il plugin per le notifiche attiva/disattiva il suo contenuto nascosto su richiesta, tramite attributi data o tramite JavaScript.</p>
 
-<h3 id="tramite-data-attributes">Tramite data attributes</h3>
+<h4 id="tramite-data-attributes">Tramite data attributes</h4>
 
 <p>Attiva una notifica senza scrivere codice JavaScript. Imposta <code class="language-plaintext highlighter-rouge">data-bs-toggle="notification"</code> su un elemento di controllo, come un
 pulsante, insieme a <code class="language-plaintext highlighter-rouge">data-bs-target="#foo"</code> o <code class="language-plaintext highlighter-rouge">href="#foo"</code> per attivare/disattivare una specifica notifica.
@@ -1201,7 +1205,7 @@ pulsante, insieme a <code class="language-plaintext highlighter-rouge">data-bs-t
 <span class="nt">&lt;/div&gt;</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<h3 id="tramite-javascript">Tramite JavaScript</h3>
+<h4 id="tramite-javascript">Tramite JavaScript</h4>
 
 <p>Richiama una notifica con id <code class="language-plaintext highlighter-rouge">myNotification</code> con una singola riga di JavaScript:</p>
 
@@ -1213,7 +1217,7 @@ pulsante, insieme a <code class="language-plaintext highlighter-rouge">data-bs-t
 <span class="kd">const</span> <span class="nx">myNotification</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Notification</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="dl">'</span><span class="s1">myNotification</span><span class="dl">'</span><span class="p">),</span> <span class="nx">options</span><span class="p">)</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<h3 id="opzioni">Opzioni</h3>
+<h4 id="opzioni">Opzioni</h4>
 
 <p>Durante la creazione di un’istanza Notification è possibile passare un oggetto per la configurazione.</p>
 
@@ -1229,26 +1233,28 @@ pulsante, insieme a <code class="language-plaintext highlighter-rouge">data-bs-t
 <span class="p">})</span>
 </pre></td></tr></tbody></table></code></pre></div></div>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th style="width: 100px;">Nome</th>
-      <th style="width: 50px;">Tipo</th>
-      <th style="width: 50px;">Predefinito</th>
-      <th style="width: 50px;">Descrizione</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>timeout</td>
-      <td>numero</td>
-      <td>2000</td>
-      <td>Durata di permanenza della notifica in millisecondi. Sostituisce l'attributo data-bs-timeout.</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th style="width: 100px;">Nome</th>
+        <th style="width: 50px;">Tipo</th>
+        <th style="width: 50px;">Predefinito</th>
+        <th style="width: 50px;">Descrizione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>timeout</td>
+        <td>numero</td>
+        <td>2000</td>
+        <td>Durata di permanenza della notifica in millisecondi. Sostituisce l'attributo data-bs-timeout.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<h3 id="metodi">Metodi</h3>
+<h4 id="metodi">Metodi</h4>
 
 <div class="bd-callout bd-callout-info">
 <h4 id="metodi-asincroni-e-transizioni">Metodi asincroni e transizioni</h4>
@@ -1258,44 +1264,45 @@ pulsante, insieme a <code class="language-plaintext highlighter-rouge">data-bs-t
 <p>Per maggiori informazioni consulta la <a href="https://getbootstrap.com/docs/5.0/getting-started/javascript/">documentazione Javascript di Bootstrap</a> (in inglese).</p>
 </div>
 
-<table class="table table-bordered table-striped">
-  <thead>
-    <tr>
-      <th style="width: 150px;">Metodo</th>
-      <th>Descrizione</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>show</td>
-      <td>Mostra la notifica. È possibile passare come parametro il valore in millisecondi di permanenza della notifica. Se non viene specificato, il tempo di permanenza della notifica verrà ricavato dal parametro di configurazione `timeout` o dal data attribute `data-bs-timeout`.</td>
-    </tr>
-    <tr>
-      <td>hide</td>
-      <td>Nasconde la notifica.</td>
-    </tr>
-    <tr>
-      <td>toggle</td>
-      <td>Mostra/nasconde la notifica.</td>
-    </tr>
-  </tbody>
-</table>
-
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th style="width: 150px;">Metodo</th>
+        <th>Descrizione</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>show</td>
+        <td>Mostra la notifica. È possibile passare come parametro il valore in millisecondi di permanenza della notifica. Se non viene specificato, il tempo di permanenza della notifica verrà ricavato dal parametro di configurazione `timeout` o dal data attribute `data-bs-timeout`.</td>
+      </tr>
+      <tr>
+        <td>hide</td>
+        <td>Nasconde la notifica.</td>
+      </tr>
+      <tr>
+        <td>toggle</td>
+        <td>Mostra/nasconde la notifica.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
         </main>
       </div>
     </div>
 
     
-<script src="/bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js?202503042355"></script>
+<script src="/bootstrap-italia/dist/js/bootstrap-italia.bundle.min.js?202509041744"></script>
 <script>
   bootstrap.loadFonts('/bootstrap-italia/dist/fonts')
-</script><script src="/bootstrap-italia/docs/assets/dist/js/docs.min.js?202503042355"></script>
+</script><script src="/bootstrap-italia/docs/assets/dist/js/docs.min.js?202509041744"></script>
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/anchor.min.js"></script>
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/clipboard.min.js"></script>
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/tsparticles.min.js"></script>
 
-<script src="/bootstrap-italia/docs/assets/src/js/docs.js?202503042355"></script>
+<script src="/bootstrap-italia/docs/assets/src/js/docs.js?202509041744"></script>
 
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/tweenjs.min.js"></script>
 <script src="/bootstrap-italia/docs/assets/src/js/vendor/easeljs.min.js"></script>
@@ -1312,7 +1319,7 @@ pulsante, insieme a <code class="language-plaintext highlighter-rouge">data-bs-t
     { src: '/bootstrap-italia/docs/assets/img/cover/cover-animation-7.png', id: 'cover-7' },
   ]
 </script>
-<script src="/bootstrap-italia/docs/assets/src/js/cover-animation.js?202503042355"></script>
+<script src="/bootstrap-italia/docs/assets/src/js/cover-animation.js?202509041744"></script>
 <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
 
 <script>
